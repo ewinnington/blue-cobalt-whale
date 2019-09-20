@@ -1,0 +1,14 @@
+{
+  "name": "hello-redis",
+  "version": "1.0.0",
+  "description": "Connects to redis and increments to connected counter",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "eric winnington",
+  "license": "MIT",
+  "dependencies": {
+    "redis": "^2.8.0"
+  }
+}
