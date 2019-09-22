@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "postgres",
+            "dialect": "PostgreSQL",
+            "name": "docker-pgdb-1",
+            "password": "XdccDa85_JK",
+            "port": 5432,
+            "server": "localhost",
+            "username": "postgres"
+        }
+    ]
+}
