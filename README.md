@@ -12,6 +12,15 @@ If you have a custom redis.conf file, you can load it at container launch by add
 
  -v [path to custom redis.conf file]:/usr/local/etc/redis/redis.conf
 
+ ### Path with the config files 
+
+ I modifed the Redis to disable the save command, to bind to all ip addresses (not recommended for prod) and added a strong password to the config file. We could also add it in the command line or even build a new image with the config file inside the container. 
+
+ Added the absolute path to the config file.
+
+ docker run --name redis-1 -p 6379:6379  -v c:\Repos\blue-cobalt-whale\redis\redis.conf:/usr/local/etc/redis/redis.conf -d redis redis-server /usr/local/etc/redis/redis.conf
+
+
 ## Rabbitmq & management
 docker run -d --hostname rabbitmq --name rabbit-1 rabbitmq:3.7.18 
 
@@ -42,6 +51,12 @@ npm install redis --save
 
 create app.js file
 
+create Dockerfile
 
+Build a Docker Container from the app 
+docker build -t hello-redis-js .
+
+Run the application and link it to the redis 
+docker run --link redis-1:redis hello-redis-js 
 
 # Installing a database management tool (or visual studio)
