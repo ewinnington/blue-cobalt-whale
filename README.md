@@ -69,3 +69,9 @@ Run the application and link it to the redis
 docker run --link redis-1:redis hello-redis-js 
 
 # Installing a database management tool (or visual studio)
+
+Install VSCode extension: SQLTools - Database tools by Matheus Teixeira
+Create a connection
+Open the DB 
+Start a session 
+Work on the DB !
