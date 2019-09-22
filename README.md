@@ -36,6 +36,13 @@ password: guest
 
 docker run -d -p 5432:5432 --name pgdb-1 -e POSTGRES_PASSWORD=XdccDa85_JK postgres
 
+Create a connection in the Visual studio code extension SQLTools
+
+To execute: 
+Ctrl-Shift-P SQLTools Connection Run this File
+
+
+
 ## Ms-Sql server
 
 ## Oracle database 
