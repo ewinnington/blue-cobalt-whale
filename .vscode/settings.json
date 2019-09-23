@@ -17,6 +17,16 @@
             "port": 1433,
             "server": "localhost",
             "username": "sa"
+        },
+        {
+            "database": "XE",
+            "dialect": "OracleDB",
+            "name": "docker-oracle-1",
+            "password": "5f5d38746ab2fb0a",
+            "port": 1521,
+            "server": "localhost",
+            "username": "system"
         }
-    ]
+    ],
+    "sqltools.useNodeRuntime": true
 }
