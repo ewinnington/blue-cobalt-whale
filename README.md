@@ -223,6 +223,9 @@ We are going to put all these nice images together and deliver an application co
 
 You can install minikube and the kubernetes cli to use kubernetes on your local machine. 
 
+## Capturing the output of the Kubernetes processes into a searchable log stream
+Also known as KLE, Kibana - Logstash - Elastic search 
+
 
 # What's this about functions, where can I get some? 
 
