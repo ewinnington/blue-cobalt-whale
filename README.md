@@ -61,18 +61,18 @@ read https://github.com/oracle/docker-images/tree/master/OracleDatabase/SingleIn
 
 Download From Oracle the db and put it in the 18.4.0
 oracle-database-xe-18c-1.0-1.x86_64.rpm
-
+place the image in 
 OracleDatabase\SingleInstance\dockerfiles\18.4.0
-
+navigate to the folder and run the docker build function - be prepared to wait... 
 docker build -t oracle/database:18.4.0-xe -f Dockerfile.xe .
 
-Run it!
-
+Run it so you can check it works in interactive mode. It will be deleted at the end (--rm) when you exit 
 docker run --rm -it -p 1521:1521/tcp -p 5500:5500/tcp -p 8080:8080/tcp --name oracledb-1 oracle/database:18.4.0-xe
 
 Run it as a 
 docker run --name oracledb-1 -d -p 1521:1521/tcp -p 5500:5500/tcp -p 8080:8080/tcp oracle/database:18.4.0-xe
 
+Parameters of the run command with environment variables. If you don't specify an oracle password, oracle will have generated one for you, you have to listen to the container to get it. 
 
 docker run --name <container name> \
 -p <host port>:1521 -p <host port>:5500 \
@@ -99,8 +99,7 @@ Parameters:
                   Optional: A volume with custom scripts to be run after database setup.
                   For further details see the "Running scripts after setup and on startup" section below.
 				  
-Install the Oracle Instant client to C:\oracle\instantclient_19_3
-Add it to the system path 
+Install the Oracle Instant client to C:\oracle\instantclient_19_3 on your local machine and add it to the system PATH, so that you can access the oracle DB with some tools like DBeaver and visual studio's DbTools. 
 
 ## MongoDB 
 
