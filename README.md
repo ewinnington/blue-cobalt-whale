@@ -41,9 +41,14 @@ Create a connection in the Visual studio code extension SQLTools
 To execute: 
 Ctrl-Shift-P SQLTools Connection Run this File
 
-
+CREATE TABLE testdb.counterparty 
+    (id serial PRIMARY KEY,
+    cp_name VARCHAR(100) NOT NULL,
+    created_on TIMESTAMP NOT NULL);
 
 ## Ms-Sql server
+
+docker run -e ACCEPT_EULA=Y -e SA_PASSWORD="XdccDa85_JK" -e MSSQL_PID="Developer" -p 1433:1433 -d --name mssqldb-1 mcr.microsoft.com/mssql/server:2017-latest 
 
 ## Oracle database 
 

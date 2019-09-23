@@ -8,6 +8,15 @@
             "port": 5432,
             "server": "localhost",
             "username": "postgres"
+        },
+        {
+            "database": "master",
+            "dialect": "MSSQL",
+            "name": "docker-mssql-1",
+            "password": "XdccDa85_JK",
+            "port": 1433,
+            "server": "localhost",
+            "username": "sa"
         }
     ]
 }
