@@ -1,6 +1,8 @@
 # blue-cobalt-whale
 Docker repository for composed applications
 
+Make sure you have docker desktop installed from https://hub.docker.com/?overlay=onboarding
+
 ## Redis
 docker run --name redis-1 -p 7001:6379 -d redis 
 
