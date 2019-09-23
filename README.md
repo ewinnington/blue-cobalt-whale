@@ -20,7 +20,6 @@ If you have a custom redis.conf file, you can load it at container launch by add
 
  docker run --name redis-1 -p 6379:6379  -v c:\Repos\blue-cobalt-whale\redis\redis.conf:/usr/local/etc/redis/redis.conf -d redis redis-server /usr/local/etc/redis/redis.conf
 
-
 ## Rabbitmq & management
 docker run -d --hostname rabbitmq --name rabbit-1 rabbitmq:3.7.18 
 
@@ -101,6 +100,12 @@ Parameters:
 Install the Oracle Instant client to C:\oracle\instantclient_19_3
 Add it to the system path 
 
+## MongoDB 
+
+What's life without a NoSql db? 
+
+
+
 # Installing Node
 node-v10-16.3 from nodejs.org
 node-v12.10.0 from nodejs.org
@@ -122,6 +127,41 @@ docker build -t hello-redis-js .
 Run the application and link it to the redis 
 docker run --link redis-1:redis hello-redis-js 
 
+# Applications
+
+## .NET 
+
+### Console .net 
+
+### ASP.NET 
+
+### WPF
+
+### Workflow foundation 
+
+## Java 
+
+### Spring boot
+
+### Tomcat 
+
+### Console
+
+### JavaFX
+
+## Node
+
+## C++
+
+## Go 
+
+# Calling endpoints for fun and profit
+
+## CLI with curl 
+
+## UI with Postman 
+
+
 # Installing a database management tool (or visual studio)
 
 ## VsCode integrated
@@ -136,3 +176,71 @@ Install DBeaver from the microsoft store
 Connect to the databases 
 
 # Next steps!
+
+## Tagging an image in Docker and pushing it to your repository
+So to save the images you have prepared to share them easily, you have to tag them with your repository information. 
+
+docker tag oracle/database:18.4.0-xe dynamicwhalesquirrel/blue-cobalt-whale:oracle-18.4.0-xe
+
+This tells docker where to store the image in your repository (I called mine blue-cobale-whale after this project).
+
+First you probably have to use docker to login with your account and password
+docker login --username=dynamicwhalesquirrel
+
+docker push dynamicwhalesquirrel/blue-cobalt-whale:oracle-18.4.0-xe
+
+This pushes the image up to the docker repository (poor them, the oracle image is 2.5 GB!)
+
+If you mistag your image (eg - here I added a path that was too long, if the image has another tag, you can untag it)
+docker rmi dynamicwhalesquirrel/blue-cobalt-whale/database:18.4.0-xe
+
+## Startup scripts for each of the databases to create a schema every time the container starts up
+
+### pgsql 
+### oracle
+### mssql 
+
+## Have persistant volumes for the databases 
+
+If you want to have the database engine inside docker, but the database files and data outside of docker, so that they are preseved from one start to the next, here's how you do it: 
+
+### pgsql 
+### oracle 
+### mssql 
+
+# Using docker for tests 
+
+Now we have databases that are initialized either to empty, or to a fresh schema script every time they start. We could use the to do some integration tests of our applications. 
+
+
+# Docker compose 
+
+We are going to put all these nice images together and deliver an application composed of different images. 
+
+
+# What about Kubernetes?
+
+You can install minikube and the kubernetes cli to use kubernetes on your local machine. 
+
+
+# What's this about functions, where can I get some? 
+
+We are going to be using azure functions from microsoft, but hosting them ourselves in the docker environment. 
+https://www.npmjs.com/package/azure-functions-core-tools
+
+
+## In my docker ? 
+
+https://medium.com/faun/azure-functions-in-a-docker-container-56e625da3243
+
+
+## In my local kubernetes?
+
+There's several platforms for functions available.
+
+### Azure
+
+
+### kubeless
+
+https://docs.bitnami.com/kubernetes/how-to/get-started-serverless-computing-kubeless/
