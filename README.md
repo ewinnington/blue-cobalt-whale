@@ -150,6 +150,10 @@ docker run --link redis-1:redis hello-redis-js
 
 ### JavaFX
 
+### Quarkus
+
+https://developers.redhat.com/blog/2019/09/23/how-the-new-quarkus-extension-for-visual-studio-code-improves-the-development-experience/
+
 ## Node
 
 ## C++
@@ -212,6 +216,15 @@ If you want to have the database engine inside docker, but the database files an
 # Using docker for tests 
 
 Now we have databases that are initialized either to empty, or to a fresh schema script every time they start. We could use the to do some integration tests of our applications. 
+
+## .net with xUnit testing with a pg database in docker
+
+We will be using the [Docker.Net](https://github.com/Microsoft/Docker.DotNet) nuget package and the xUnit nuget package to setup a pgsql database that gets setup when we run a test and torn down at the end. 
+
+Inspired by the post: https://brainlesscoder.com/2019/04/19/automated-integration-test-with-c-and-docker-with-docker-dotnet/ and using the MIT code from https://github.com/Activehigh/Atl.GenericRepository/blob/master/Atl.Repository.Standard.Tests/Repositories/ReadRepositoryTestsWithNpgsql.cs
+
+
+
 
 
 # Docker compose 

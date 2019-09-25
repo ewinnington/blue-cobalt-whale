@@ -41,3 +41,9 @@ hello-redis-js/node_modules/redis-parser/lib/hiredis.js
 hello-redis-js/node_modules/redis-parser/lib/parser.js
 hello-redis-js/node_modules/redis-parser/lib/parserError.js
 hello-redis-js/node_modules/redis-parser/lib/redisError.js
+/pg-tests-cs/pg_tests/bin/Debug/netcoreapp2.2
+/pg-tests-cs/pg_tests/obj
+/pg-tests-cs/using_pg_as_integration_test_database/.vs/using_pg_as_integration_test_database
+/pg-tests-cs/using_pg_as_integration_test_database/obj/Debug/netcoreapp2.2
+/pg-tests-cs/using_pg_as_integration_test_database/bin/Debug/netcoreapp2.2
+/pg-tests-cs/using_pg_as_integration_test_database/obj
