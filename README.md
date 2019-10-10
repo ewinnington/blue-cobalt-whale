@@ -158,6 +158,8 @@ https://developers.redhat.com/blog/2019/09/23/how-the-new-quarkus-extension-for-
 
 ## C++
 
+## Rust
+
 ## Go 
 
 # Calling endpoints for fun and profit
@@ -202,8 +204,56 @@ docker rmi dynamicwhalesquirrel/blue-cobalt-whale/database:18.4.0-xe
 ## Startup scripts for each of the databases to create a schema every time the container starts up
 
 ### pgsql 
+
+```sql 
+CREATE TABLE currencies(id SERIAL PRIMARY KEY, name VARCHAR(3)); 
+CREATE TABLE collateral_types(id SERIAL PRIMARY KEY, name VARCHAR(50)); 
+CREATE TABLE counterparties(id SERIAL PRIMARY KEY, name VARCHAR(50), address VARCHAR(200));
+CREATE TABLE collaterals(id SERIAL PRIMARY KEY, collateral_type INTEGER REFERENCES collateral_types, counterparty INTEGER REFERENCES counterparties, currency INTEGER REFERENCES currencies, nominal_value NUMERIC, deposited DATE);
+
+INSERT INTO currencies(name) VALUES ('EUR');
+INSERT INTO currencies(name) VALUES ('CHF');
+INSERT INTO currencies(name) VALUES ('USD');
+INSERT INTO currencies(name) VALUES ('GBP');
+INSERT INTO currencies(name) VALUES ('YEN');
+
+INSERT INTO collateral_types(name) VALUES ('Letter of credit');
+INSERT INTO collateral_types(name) VALUES ('Bank guarantee');
+INSERT INTO collateral_types(name) VALUES ('Deposit');
+
+INSERT INTO counterparties(name, address) VALUES ('Power company A', 'First street, countryA');
+INSERT INTO counterparties(name, address) VALUES ('Investment bank B', 'Second avenue, countryB');
+
+INSERT INTO collaterals(collateral_type, counterparty, currency, nominal_value, deposited) VALUES (1, 1, 1, 100000, '2018-01-01' );
+INSERT INTO collaterals(collateral_type, counterparty, currency, nominal_value, deposited) VALUES (2, 1, 2, 50000, '2018-01-01' );
+INSERT INTO collaterals(collateral_type, counterparty, currency, nominal_value, deposited) VALUES (3, 2, 2, 100000, '2019-01-01' );
+```
 ### oracle
-### mssql 
+
+
+CREATE TABLE master_agreements(id NUMERIC NOT NULL, counterparty_code VARCHAR(20) NOT NULL, agreement BLOB NOT NULL, identifier RAW(16) NOT NULL, valid_start DATE NULL );
+
+sb.Append(String.Format("CREATE SEQUENCE \"{0}_SEQ\" START WITH 1 CACHE 20\n", (column.Table + "_" + column.Name)) + CommandSeperator());
+
+            sb.Append(String.Format("CREATE TRIGGER master_agreements_TRG BEFORE INSERT ON master_agreements (column.Table + "_" + column.Name), column.Table));
+            sb.AppendLine("FOR EACH ROW");
+            sb.AppendLine("BEGIN");
+            sb.AppendLine("\t<<COLUMN_SEQUENCES>>");
+            sb.AppendLine("BEGIN");
+            sb.AppendLine("IF :NEW." + column.Name + " IS NULL THEN");
+            sb.AppendLine(String.Format("SELECT {0}_SEQ.NEXTVAL INTO :NEW.{1} FROM DUAL;", (column.Table + "_" + column.Name), column.Name )); 
+            sb.AppendLine(" END IF;");
+            sb.AppendLine("END COLUMN_SEQUENCES;");
+            sb.AppendLine("END;");
+            sb.AppendLine("/"); 
+
+CREATE UNIQUE INDEX master_agreements_index1 ON master_agreements (id);
+CREATE INDEX master_agreements_index2 ON master_agreements (counterparty_code);
+
+ALTER TABLE master_agreements ADD ( CONSTRAINT master_agreements_PK
+        PRIMARY KEY ( id ) USING INDEX master_agreements_index1 ENABLE VALIDATE);
+
+### mssql       
 
 ## Have persistant volumes for the databases 
 
@@ -223,13 +273,15 @@ We will be using the [Docker.Net](https://github.com/Microsoft/Docker.DotNet) nu
 
 Inspired by the post: https://brainlesscoder.com/2019/04/19/automated-integration-test-with-c-and-docker-with-docker-dotnet/ and using the MIT code from https://github.com/Activehigh/Atl.GenericRepository/blob/master/Atl.Repository.Standard.Tests/Repositories/ReadRepositoryTestsWithNpgsql.cs
 
-
-
-
+The UnitTest1.cs has the code to connect to the docker engine and startup instances in respose to the running of the test class. 
 
 # Docker compose 
 
 We are going to put all these nice images together and deliver an application composed of different images. 
+
+# Docker Swarm 
+
+All these images were effectively working only on a single machine, but in seperate containers. With a swarm, you now have containers that can be deployed together over multiple machines or VMs. 
 
 
 # What about Kubernetes?
@@ -261,3 +313,17 @@ There's several platforms for functions available.
 ### kubeless
 
 https://docs.bitnami.com/kubernetes/how-to/get-started-serverless-computing-kubeless/
+
+
+# Running Camunda
+
+https://github.com/camunda/docker-camunda-bpm-platform
+
+
+docker pull camunda/camunda-bpm-platform:latest
+docker run -d --name camunda -p 8080:8080 camunda/camunda-bpm-platform:latest
+
+user: demo 
+pass: demo
+
+http://localhost:8080/camunda-welcome/index.html

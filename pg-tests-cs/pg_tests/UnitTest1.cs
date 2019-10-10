@@ -164,7 +164,7 @@ namespace pg_tests
         public async void My_Life_As_A_Cat()
         {
 
-            string getFirstTitle = "SELECT title FROM table1 ORDER BY id LIMIT 2";
+            string getFirstTitle = "SELECT title FROM table1 ORDER BY id LIMIT 1";
 
             using (var cmd = fixture.Db.CreateCommand())
             {
