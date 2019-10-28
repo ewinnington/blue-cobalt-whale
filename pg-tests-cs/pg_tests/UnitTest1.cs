@@ -95,8 +95,9 @@ namespace pg_tests
             {
                 Thread.Sleep(1000);
                 containerStat = await client.Containers.InspectContainerAsync(container.ID, CancellationToken.None);
+                
             }
-
+            Thread.Sleep(10000); //I need some time for the DB to finish starting up so that my tests don't report the DB is starting up
             return (container, $"{hostPort}");
         }
 
