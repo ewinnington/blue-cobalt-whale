@@ -47,9 +47,63 @@ CREATE TABLE testdb.counterparty
     cp_name VARCHAR(100) NOT NULL,
     created_on TIMESTAMP NOT NULL);
 
+Connect to the PGSQL shell,
+
+docker exec -it pgdb-1 /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
+
+then use to connect to the database. 
+
+- psql --username=postgres
+
+- DROP DATABASE IF EXISTS testdb;
+- CREATE DATABASE testdb
+- "\l" to list all the existing databases
+- "\c testdb" to connect to the *testdb* database
+- "\d" to get a list of all relations
+
+- CREATE USER pgtester CREATEROLE LOGIN NOREPLICATION PASSWORD 'abcdef@123';
+- GRANT ALL PRIVILEGES ON DATABASE testdb TO pgtester;
+- \c testdb pgtester
+
+- DROP TABLE IF EXISTS counterparties; 
+- CREATE TABLE counterparties(id serial PRIMARY KEY, cp_name VARCHAR(100) NOT NULL, created_on TIMESTAMP NOT NULL);
+- INSERT INTO counterparties(cp_name, created_on) VALUES ('Investment bank A', '2019-11-11');
+
+- SELECT * FROM counterparties;
+
+
 ## Ms-Sql server
 
 docker run -e ACCEPT_EULA=Y -e SA_PASSWORD="XdccDa85_JK" -e MSSQL_PID="Developer" -p 1433:1433 -d --name mssqldb-1 mcr.microsoft.com/mssql/server:2017-latest 
+
+- docker exec -it mssqldb-1 /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
+- /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P XdccDa85_JK -d master
+
+- DROP DATABASE IF EXISTS testdb;
+- CREATE DATABASE testdb;
+- SELECT Name from sys.Databases;
+- GO
+
+- USE testdb;
+- GO
+
+- EXEC sp_configure 'CONTAINED DATABASE AUTHENTICATION', 1
+- GO 
+- RECONFIGURE
+- GO
+
+- ALTER DATABASE [testdb] SET CONTAINMENT = PARTIAL
+- CREATE USER mstest WITH PASSWORD = 'abcdef@123';
+- GRANT CONTROL ON DATABASE::testdb TO mstest;
+- GO
+
+- DROP TABLE IF EXISTS Inventory;
+- CREATE TABLE Inventory (id INT, name NVARCHAR(50), quantity INT);
+- INSERT INTO Inventory VALUES (1, 'banana', 150); INSERT INTO Inventory VALUES (2, 'orange', 154);
+- GO
+
+- Select * from Inventory; 
+- GO
 
 ## Oracle database 
 
