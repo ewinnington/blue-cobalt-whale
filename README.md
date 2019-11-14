@@ -168,6 +168,13 @@ https://developers.redhat.com/blog/2019/09/23/how-the-new-quarkus-extension-for-
 
 ## UI with Postman 
 
+## Ballerina 
+
+The [ballerina language](https://ballerina.io) is a new software programming language currently living on top of a JVM with jBallerina, but planned to go native with LLVM. It is supposed to provide features for distributed computing applications as part of its standard library.  
+
+The language itself is docker aware and supports annotations adding the docker configuration into the source code of a service. The build of ballerina will generate the docker container for the release. 
+
+
 
 # Installing a database management tool (or visual studio)
 
