@@ -47,3 +47,5 @@ hello-redis-js/node_modules/redis-parser/lib/redisError.js
 /pg-tests-cs/using_pg_as_integration_test_database/obj/Debug/netcoreapp2.2
 /pg-tests-cs/using_pg_as_integration_test_database/bin/Debug/netcoreapp2.2
 /pg-tests-cs/using_pg_as_integration_test_database/obj
+.vs/
+pg-tests-cs/pg_tests/.vs/

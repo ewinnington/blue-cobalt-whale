@@ -107,7 +107,7 @@ docker run -e ACCEPT_EULA=Y -e SA_PASSWORD="XdccDa85_JK" -e MSSQL_PID="Developer
 
 ## Oracle database 
 
-The oracle DB in express is not available from the docker repository. So we have to follow a few steps to get it up and running. 
+The oracle DB in express is not available from the docker repository. So we have to follow a few steps to get it up and running. There is now an image of oracle pre-built that is available online.
 
 git clone https://github.com/oracle/docker-images.git --depth 1 --single-branch --progress
 
